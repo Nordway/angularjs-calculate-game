@@ -1,0 +1,29 @@
+<div data-ng-controller="GameCtrl">
+
+    <div class="content">
+
+        <div class="box left">
+            <p>Укажите уровень сложности:</p>
+
+            <select data-ng-model="current_level" data-ng-options="l.name for l in levels"></select>
+            <button data-ng-click="startGame(current_level)" data-ng-disabled="game_in_process" data-ng-show="game_in_process == false" data-input-focus>Начать игру!</button>
+            <button data-ng-click="stopGame()" data-ng-show="game_in_process == true">Остановить игру!</button>
+
+            <form data-ng-submit="addResult(result)">
+                <p><span>{{expression}}</span><input type="number" data-ng-model="result" required  data-ng-disabled="!game_in_process" /></p>
+                <p class="small">Для отправки ответа используйте &crarr; "Enter"</p>
+            </form>
+        </div>
+
+        <div class="box right">
+            <p>Среднее время вычислений: <strong>{{avg}}</strong> сек.</p>
+            <ul>
+                <li data-ng-repeat="answer in answers track by $index">
+                    <span class="{{answer[2]}}correct">{{answer[0]}}{{answer[1]}}</span> (за {{answer[3]}} сек)
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
