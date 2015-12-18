@@ -23,15 +23,19 @@ app.factory('ResultModel', function () {
          */
         getAvg: function(limit) {
             var sum = 0;
-            var count = limit;
+            var count = 0;
 
             if (limit == 0) {
-                count = this.time.length;
+                limit = this.time.length;
             }
 
-            for (var i = 0; i < count; i++) {
-                sum += this.times[i];
+            for (var i = 0; i < limit; i++) {
+                if (this.times[i]) {
+                    sum += this.times[i];
+                    count += 1;
+                }
             }
+
             return this.prepareTime(sum / count);
         },
         /**

@@ -44,7 +44,7 @@ app.controller('GameCtrl', function ($scope, LevelModel, AnswerModel, ResultMode
 
         var t_diff = ResultModel.getDiff();
         ResultModel.save(t_diff);
-        AnswerModel.save($scope.expression, $scope.compResult, result, ResultModel.prepareTime(t_diff));
+        AnswerModel.save($scope.expression, result, ResultModel.prepareTime(t_diff));
         $scope.avg = ResultModel.getAvg(10);
         $scope.answers = AnswerModel.answers;
         $scope.startNewRound();

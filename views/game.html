@@ -16,7 +16,7 @@
             <p>Среднее время ответа (LAST 10): <strong>{{avg}}</strong> сек.</p>
             <ul>
                 <li data-ng-repeat="answer in answers track by $index">
-                    <span class="{{answer[2]}}correct">{{answer[0]}}{{answer[1]}}</span> (за {{answer[3]}} сек)
+                    <span class="correct">{{answer[0]}}{{answer[1]}}</span> (за {{answer[2]}} сек)
                 </li>
             </ul>
         </div>
