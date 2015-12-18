@@ -22,7 +22,6 @@ app.controller('GameCtrl', function ($scope, LevelModel, AnswerModel, ResultMode
         $scope.current_level = level;
         $scope.game_in_process = true;
         LevelModel.setLevel(level);
-        //$window.document.getElementById('inp_answer').focus();
         $scope.startNewRound();
     };
 
@@ -39,10 +38,14 @@ app.controller('GameCtrl', function ($scope, LevelModel, AnswerModel, ResultMode
      * @param result
      */
     $scope.addResult = function(result) {
+        if (result != $scope.compResult) {
+            return;
+        }
+
         var t_diff = ResultModel.getDiff();
         ResultModel.save(t_diff);
         AnswerModel.save($scope.expression, $scope.compResult, result, ResultModel.prepareTime(t_diff));
-        $scope.avg = ResultModel.getAvg();
+        $scope.avg = ResultModel.getAvg(10);
         $scope.answers = AnswerModel.answers;
         $scope.startNewRound();
     };
@@ -56,7 +59,7 @@ app.controller('GameCtrl', function ($scope, LevelModel, AnswerModel, ResultMode
         $scope.expression = value_a + ' + ' + value_b + ' = ';
         $scope.compResult = value_a + value_b;
         $scope.result = '';
-        ResultModel.t_start = new Date().getTime();
+        ResultModel.t_start = performance.now();
     };
 
 });

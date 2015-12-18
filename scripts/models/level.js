@@ -5,7 +5,7 @@ app.factory('LevelModel', function () {
     return {
         /** @type {number} Минимальное значение числа */
         min: 1,
-        /** @type {number} максимальное значение числа */
+        /** @type {number} Максимальное значение числа */
         max: 9,
         /** @type {Array} Доступные уровни сложности */
         levels: [

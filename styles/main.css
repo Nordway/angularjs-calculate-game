@@ -28,7 +28,7 @@ select, button, input {
     padding: 5px;
 }
 
-form p span {
+p span {
     font-weight: bold;
     padding: 5px;
 }
@@ -52,8 +52,4 @@ ul li span.correct {
 
 ul li span.not.correct {
     color: #FF0000;
-}
-
-.small {
-    font-size: 11px;
 }

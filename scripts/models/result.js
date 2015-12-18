@@ -14,15 +14,21 @@ app.factory('ResultModel', function () {
          * @param t_diff
          */
         save: function(t_diff) {
-            this.times.push(t_diff);
+            this.times.unshift(t_diff);
         },
         /**
          * Получаем среднее время ответа пользователя
+         * @param {number} limit количество последних ответов
          * @returns {number}
          */
-        getAvg: function() {
+        getAvg: function(limit) {
             var sum = 0;
-            var count = this.times.length;
+            var count = limit;
+
+            if (limit == 0) {
+                count = this.time.length;
+            }
+
             for (var i = 0; i < count; i++) {
                 sum += this.times[i];
             }
@@ -33,7 +39,7 @@ app.factory('ResultModel', function () {
          * @returns {number}
          */
         getDiff: function() {
-            this.t_finish = new Date().getTime();
+            this.t_finish = performance.now();
             return this.t_finish - this.t_start;
         },
         /**
@@ -42,7 +48,7 @@ app.factory('ResultModel', function () {
          * @returns {string}
          */
         prepareTime: function(time) {
-            return (parseFloat(time) / 1000).toFixed(3);
+            return (parseFloat(time) / 1000).toFixed(4);
         }
     }
 
